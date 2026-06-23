@@ -35,7 +35,7 @@ body {
   text-decoration: none;
   color: #F4F1E8;
   font-weight: 500;
-  white-space: nowrap; /* evita che vadano a capo */
+  white-space: nowrap;
 }
 
 .navbar a:hover {
@@ -241,21 +241,28 @@ footer {
 /* MOBILE */
 @media (max-width: 768px) {
 
-  /* NAVBAR — mantiene tutto visibile */
+  /* NAVBAR — due righe ordinate */
   .navbar {
     padding: 15px 20px;
-  }
-
-  .navbar ul {
-    gap: 15px; /* riduce leggermente lo spazio tra i link */
-  }
-
-  .navbar a {
-    font-size: 0.9rem;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    justify-content: center;
   }
 
   .logo {
     font-size: 1.1rem;
+    margin-right: 12px;
+  }
+
+  .navbar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .navbar a {
+    font-size: 0.9rem;
   }
 
   #hero {
