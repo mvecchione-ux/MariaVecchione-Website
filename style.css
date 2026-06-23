@@ -1,8 +1,8 @@
 /* PALETTE
-Cream: EFECE3
+Cream: #EFECE3
 Light Blue: #A7D3F2
 Medium Blue: #4A90C2
-Blue 112D4E
+Blue: #112D4E
 */
 
 body {
@@ -10,16 +10,19 @@ body {
   font-family: 'Inter', sans-serif;
   color: #000000;
   background: #EFECE3;
+  line-height: 1.6;
 }
 
 /* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 40px;
   position: sticky;
   top: 0;
   background: #112D4E;
+  z-index: 100;
 }
 
 .navbar ul {
@@ -32,6 +35,7 @@ body {
   text-decoration: none;
   color: #F4F1E8;
   font-weight: 500;
+  white-space: nowrap; /* evita che vadano a capo */
 }
 
 .navbar a:hover {
@@ -41,6 +45,7 @@ body {
 .logo {
   font-weight: 700;
   color: #F4F1E8;
+  white-space: nowrap;
 }
 
 /* HERO */
@@ -193,6 +198,15 @@ body {
   text-align: center;
 }
 
+#contact a {
+  color: #4A90C2;
+  font-weight: 600;
+}
+
+#contact a:hover {
+  color: #2B2E4A;
+}
+
 /* FOOTER */
 footer {
   text-align: center;
@@ -200,4 +214,100 @@ footer {
   background: #112D4E;
   color: #F4F1E8;
   margin-top: 40px;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+=========================== */
+
+/* TABLET */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 15px 25px;
+  }
+
+  #hero h1 {
+    font-size: 2.5rem;
+  }
+
+  #experience,
+  #skills,
+  #projects,
+  #about {
+    padding: 80px 20px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  /* NAVBAR — mantiene tutto visibile */
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .navbar ul {
+    gap: 15px; /* riduce leggermente lo spazio tra i link */
+  }
+
+  .navbar a {
+    font-size: 0.9rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  #hero {
+    padding: 80px 20px;
+  }
+
+  #hero h1 {
+    font-size: 2.2rem;
+  }
+
+  #about {
+    padding: 60px 20px;
+  }
+
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+  }
+
+  #experience {
+    padding: 60px 20px;
+  }
+
+  .exp-item {
+    padding: 20px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #projects {
+    padding: 60px 20px;
+  }
+
+  .project-card {
+    padding: 20px;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+
+  #hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar a {
+    font-size: 0.85rem;
+  }
 }
