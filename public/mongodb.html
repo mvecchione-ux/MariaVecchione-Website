@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MongoDB – Contact List Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #EFECE3;
+      padding: 40px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #112D4E;
+    }
+    pre {
+      background: #ede6e6;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      overflow-x: auto;
+      font-size: 15px;
+    }
+    h2 {
+      color: #4A90C2;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1>MongoDB – Contact List Management</h1>
+<p style="text-align:center; max-width:700px; margin:0 auto;">
+  Below is the code used for querying and updating the MongoDB contact list.
+</p>
+
+<h2>Queries</h2>
+<pre><code>
+// Find all contacts associated with WebCorp
+db.ContactList.find({ Società: "WebCorp" })
+
+// Identify contacts with more than one phone number
+db.ContactList.find({ "Numero_di_cellulare.1": { $exists: true } })
+
+// Extract phone numbers of contacts tagged as "lavoro"
+db.ContactList.find(
+  { Tag: "lavoro" },
+  { Nome: 1, Cognome: 1, Numero_di_cellulare: 1 }
+)
+</code></pre>
+
+<h2>Aggregations</h2>
+<pre><code>
+// Count contacts marked as "amici stretti"
+db.ContactList.aggregate([
+  { $group: { _id: { Close_friends: "$Amici_stretti" }, count: { $sum: 1 } } }
+])
+
+// Average calls last month for close friends
+db.ContactList.aggregate([
+  { $match: { Amici_stretti: true } },
+  { $group: { _id: "Close Friends", avg_call_last_month: { $avg: "$Chiamate_ultimo_mese" } } }
+])
+</code></pre>
+
+<h2>Updates</h2>
+<pre><code>
+// Add phone number to Simone Azzurri
+db.ContactList.updateOne(
+  { Nome: "Simone", Cognome: "Azzurri" },
+  { $push: { Numero_di_cellulare: "345678902" } }
+)
+
+// Insert new contact
+db.ContactList.insertOne({
+  Nome: "Mary",
+  Cognome: "Salgado",
+  Numero_di_cellulare: "346679933",
+  Altri_contatti: { Indirizzo: "Via 25 Aprile 3, Firenze" }
+})
+</code></pre>
+
+</body>
+</html>
